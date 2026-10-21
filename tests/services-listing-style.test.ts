@@ -13,11 +13,12 @@ describe('services listing presentation', () => {
     expect(css).toContain('.footer-cta{display:grid');
   });
 
-  it('gives the prefooter its own original-color brand treatment', () => {
+  it('gives the prefooter a deferred visual treatment with external caption', () => {
     const footer = readFileSync('src/components/SiteFooter.astro', 'utf8');
     const css = readFileSync('src/styles/global.css', 'utf8');
-    expect(footer).toContain('footer-mark footer-mark--original');
-    expect(css).toContain('.footer-mark--original img{filter:none}');
+    expect(footer).toContain('footer-media" data-deferred-video');
+    expect(footer).toContain('IA que se pone a trabajar');
+    expect(css).toContain('.site-footer .footer-video-shell');
     expect(css).toContain('.footer-cta-copy{');
   });
 

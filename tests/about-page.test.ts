@@ -8,8 +8,9 @@ describe('about page', () => {
     expect(page).toContain('/img/yo.png');
     expect(page).toContain('Rodrigo Daniel Salgado Escanilla');
     expect(page).toContain('https://www.linkedin.com/in/rodrigo-salgado-91146149/');
-    expect(page).toContain('www.area3.cl');
-    expect(page).toContain('www.vfx.cl');
-    expect(page).toContain('www.uxui.cl');
+    expect(page).toContain('>area3.cl<');
+    expect(page).toContain('>vfx.cl<');
+    expect(page).toContain('>uxui.cl<');
+    expect(page).not.toContain('>www.area3.cl<');
   });
 });
