@@ -1,0 +1,5 @@
+---
+interface Props { href: string; }
+const { href } = Astro.props;
+---
+<a class="context-link" href={href}><slot /><span aria-hidden="true">↗</span></a>

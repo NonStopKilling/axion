@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import RoiCalculator from '../../components/RoiCalculator.astro';
+import ContextLink from '../../components/ContextLink.astro';
 ---
 <BaseLayout title="Calculadora de ROI Operativo en Chile | Axion" description="Mide el costo de ineficiencia operativa de tu equipo y estima el impacto de automatizar procesos manuales en Chile." canonicalPath="/recursos/calculadora-roi/">
   <SiteHeader />
@@ -18,7 +19,7 @@ import RoiCalculator from '../../components/RoiCalculator.astro';
         <article><p class="roi-sector-index">04</p><h3>Servicios Financieros, Legal y Consultoría</h3><p class="roi-location">Santiago Centro, Las Condes y Providencia</p><p>En las comunas corporativas del Gran Santiago, las horas cobrables de los profesionales se diluyen en la facturación manual, revisión de contratos y agendamiento. Revisa el retorno de inversión al digitalizar tus flujos documentales.</p></article>
       </div>
     </section>
-    <section class="roi-closing"><p class="kicker">Siguiente paso</p><h2>La estimación abre la conversación. El proceso correcto la convierte en resultado.</h2><p>Revisamos tus herramientas actuales, prioridades y puntos de fricción para diseñar una automatización que el equipo realmente pueda adoptar.</p><a class="button orange" href="https://wa.me/56999464840?text=Hola%20Axion%2C%20quiero%20revisar%20el%20ROI%20operativo%20de%20mi%20empresa." target="_blank" rel="noreferrer">Conversemos sobre tu operación <span aria-hidden="true">↗</span></a></section>
+    <section class="roi-closing"><p class="kicker">Siguiente paso</p><h2>La estimación abre la conversación. El proceso correcto la convierte en resultado.</h2><p>Revisamos tus herramientas actuales, prioridades y puntos de fricción para diseñar una automatización que el equipo realmente pueda adoptar.</p><p><ContextLink href="/precios/">Entender cómo cotizamos una automatización</ContextLink></p><a class="button orange" href="https://wa.me/56999464840?text=Hola%20Axion%2C%20quiero%20revisar%20el%20ROI%20operativo%20de%20mi%20empresa." target="_blank" rel="noreferrer">Conversemos sobre tu operación <span aria-hidden="true">↗</span></a></section>
   </main>
   <SiteFooter />
 </BaseLayout>
