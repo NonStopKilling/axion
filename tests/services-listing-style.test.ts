@@ -7,4 +7,9 @@ describe('services listing presentation', () => {
     expect(css).toContain('.listing{');
     expect(css).toContain('.listing-grid{');
   });
+
+  it('uses the available footer width with a balanced CTA composition', () => {
+    const css = readFileSync('src/styles/global.css', 'utf8');
+    expect(css).toContain('.footer-cta{display:grid');
+  });
 });
