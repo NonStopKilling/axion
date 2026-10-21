@@ -40,6 +40,13 @@ describe('services listing presentation', () => {
     expect(css).toContain('width:64px!important');
   });
 
+  it('gives industry buttons an animated technological hover state', () => {
+    const css = readFileSync('src/styles/global.css', 'utf8');
+    expect(css).toContain('.industry a::before{');
+    expect(css).toContain('.industry a:hover::before');
+    expect(css).toContain('.industry a:hover span');
+  });
+
   it('defines a shared visual shell for interior pages', () => {
     const css = readFileSync('src/styles/global.css', 'utf8');
     expect(css).toContain('.simple-page,.service-hero{');
