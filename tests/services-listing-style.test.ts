@@ -53,6 +53,13 @@ describe('services listing presentation', () => {
     expect(css).toContain('.industry a:hover span');
   });
 
+  it('extends the signal motion to shared CTA buttons without changing their base color', () => {
+    const css = readFileSync('src/styles/global.css', 'utf8');
+    expect(css).toContain('.button::before{');
+    expect(css).toContain('.button:hover::before');
+    expect(css).toContain('.button:hover span');
+  });
+
   it('adds breathing room before the FAQ consultation CTA', () => {
     const css = readFileSync('src/styles/global.css', 'utf8');
     expect(css).toContain('.faq>div:first-child .button{margin-top:2rem}');
