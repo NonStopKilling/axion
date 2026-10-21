@@ -8,4 +8,9 @@ describe('before and after scene', () => {
     expect(page).toContain('12 consultas sin responder');
     expect(page).toContain('4 horas agendadas');
   });
+
+  it('treats process numbers as oversized visual milestones', () => {
+    const css = readFileSync('src/styles/global.css', 'utf8');
+    expect(css).toContain('.process li b{font:800 clamp(7rem');
+  });
 });
