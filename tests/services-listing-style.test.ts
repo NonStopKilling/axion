@@ -58,6 +58,11 @@ describe('services listing presentation', () => {
     expect(css).toContain('.faq>div:first-child .button{margin-top:2rem}');
   });
 
+  it('does not draw a connector line through the process milestones', () => {
+    const css = readFileSync('src/styles/global.css', 'utf8');
+    expect(css).toContain('.process::after{display:none}');
+  });
+
   it('defines a shared visual shell for interior pages', () => {
     const css = readFileSync('src/styles/global.css', 'utf8');
     expect(css).toContain('.simple-page,.service-hero{');
