@@ -1,4 +1,24 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro'; import SiteHeader from '../../components/SiteHeader.astro'; import SiteFooter from '../../components/SiteFooter.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import RoiCalculator from '../../components/RoiCalculator.astro';
 ---
-<BaseLayout title="Calculadora ROI | Axion" description="Estima el impacto de automatizar la atención de tu empresa."><SiteHeader /><main id="contenido" class="simple-page"><p class="kicker">Recurso</p><h1>Calcula dónde se está yendo el tiempo de tu equipo.</h1><p>La calculadora de ROI estará disponible próximamente. Mientras tanto, podemos revisar tu operación en una conversación breve.</p></main><SiteFooter /></BaseLayout>
+<BaseLayout title="Calculadora de ROI Operativo en Chile | Axion" description="Mide el costo de ineficiencia operativa de tu equipo y estima el impacto de automatizar procesos manuales en Chile." canonicalPath="/recursos/calculadora-roi/">
+  <SiteHeader />
+  <main id="contenido">
+    <header class="resource-hero"><p class="kicker">Recurso operativo para Chile</p><h1>Calculadora de ROI Operativo en Chile: Mide el Costo de Ineficiencia de tu Equipo</h1><p>Descubre en menos de 2 minutos cuántas horas y cuánto dinero está perdiendo tu empresa por procesos manuales. Automatización a medida para Pymes y Grandes Empresas desde Antofagasta hasta Puerto Montt.</p><a class="resource-hero-link" href="#calculadora">Calcular mi ROI <span aria-hidden="true">↓</span></a></header>
+    <div id="calculadora" class="roi-calculator-wrap"><RoiCalculator /></div>
+    <section class="roi-content">
+      <div class="roi-content-intro"><p class="kicker">Operación por territorio</p><h2>Optimización Operativa por Sectores Clave en Chile</h2><p>La automatización no se trata de instalar una herramienta genérica. Se trata de detectar dónde se acumula trabajo manual en la realidad de cada rubro, temporada y territorio.</p></div>
+      <div class="roi-sector-grid">
+        <article><p class="roi-sector-index">01</p><h3>Sector Minero y Servicios a la Minería</h3><p class="roi-location">Antofagasta, Calama y Copiapó</p><p>En la industria minera del norte de Chile, la gestión de acreditaciones, control de asistencia en turno y aprobación de pases de ingreso genera más de 12 horas semanales de carga administrativa por supervisor. Nuestra calculadora de ROI determina el impacto monetario de automatizar la gestión documental y la logística de personal.</p></article>
+        <article><p class="roi-sector-index">02</p><h3>Agroindustria y Exportadoras</h3><p class="roi-location">Región del Maule, O'Higgins y Osorno</p><p>El seguimiento de trazabilidad, control de faenas agrícolas y recepción de insumos en temporada alta suele colapsar las operaciones. Automatizar el ingreso de datos de campo elimina el error humano y ahorra hasta un 70% del tiempo operativo del personal administrativo.</p></article>
+        <article><p class="roi-sector-index">03</p><h3>Logística, Retail y Distribución</h3><p class="roi-location">Pudahuel, San Bernardo y Quilicura</p><p>La conciliación de inventarios, gestión de devoluciones y seguimiento de entregas en la Región Metropolitana requiere constante procesamiento de planillas Excel. Mide cuánto dinero anual podrías reasignar a ventas eliminando la digitación manual.</p></article>
+        <article><p class="roi-sector-index">04</p><h3>Servicios Financieros, Legal y Consultoría</h3><p class="roi-location">Santiago Centro, Las Condes y Providencia</p><p>En las comunas corporativas del Gran Santiago, las horas cobrables de los profesionales se diluyen en la facturación manual, revisión de contratos y agendamiento. Revisa el retorno de inversión al digitalizar tus flujos documentales.</p></article>
+      </div>
+    </section>
+    <section class="roi-closing"><p class="kicker">Siguiente paso</p><h2>La estimación abre la conversación. El proceso correcto la convierte en resultado.</h2><p>Revisamos tus herramientas actuales, prioridades y puntos de fricción para diseñar una automatización que el equipo realmente pueda adoptar.</p><a class="button orange" href="https://wa.me/56999464840?text=Hola%20Axion%2C%20quiero%20revisar%20el%20ROI%20operativo%20de%20mi%20empresa." target="_blank" rel="noreferrer">Conversemos sobre tu operación <span aria-hidden="true">↗</span></a></section>
+  </main>
+  <SiteFooter />
+</BaseLayout>

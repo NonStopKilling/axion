@@ -1,0 +1,63 @@
+---
+const whatsappBase = 'https://wa.me/56999464840';
+---
+<section class="roi-calculator" data-roi-calculator data-whatsapp-base={whatsappBase} aria-labelledby="roi-calculator-title">
+  <div class="roi-calculator-intro"><p class="kicker">Diagnóstico operativo</p><h2 id="roi-calculator-title">Ponle número al tiempo que hoy se pierde.</h2><p>Responde tres preguntas. Verás una estimación de horas recuperables y ahorro potencial al automatizar tareas manuales.</p><ul><li>Estimación en pesos chilenos</li><li>Resultado en menos de 2 minutos</li><li>Sin dejar datos para calcular</li></ul></div>
+  <div class="roi-chat" aria-live="polite">
+    <div class="roi-chat-head"><span>AX</span><div><b>Calculadora Axion</b><small>Diagnóstico guiado</small></div><i>●</i></div>
+    <div class="roi-transcript" data-roi-history><p class="roi-bubble bot">Hola. Calculemos el costo operativo de los procesos manuales de tu equipo.</p></div>
+    <form class="roi-form" data-roi-form>
+      <label for="roi-input" data-roi-question>1. ¿Cuántas personas forman parte de tu equipo operativo?</label>
+      <div><input id="roi-input" data-roi-input type="number" min="1" step="1" inputmode="numeric" placeholder="Ej.: 10" required /><button type="submit">Continuar <span aria-hidden="true">↗</span></button></div>
+      <p class="roi-error" data-roi-error hidden>Ingresa un número mayor que cero para continuar.</p>
+    </form>
+    <div class="roi-result" data-roi-result hidden></div>
+  </div>
+</section>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-roi-calculator]').forEach((calculator) => {
+    const form = calculator.querySelector<HTMLFormElement>('[data-roi-form]')!;
+    const input = calculator.querySelector<HTMLInputElement>('[data-roi-input]')!;
+    const question = calculator.querySelector<HTMLElement>('[data-roi-question]')!;
+    const history = calculator.querySelector<HTMLElement>('[data-roi-history]')!;
+    const result = calculator.querySelector<HTMLElement>('[data-roi-result]')!;
+    const error = calculator.querySelector<HTMLElement>('[data-roi-error]')!;
+    const values: number[] = [];
+    const questions = [
+      { text: '1. ¿Cuántas personas forman parte de tu equipo operativo?', placeholder: 'Ej.: 10', suffix: 'personas' },
+      { text: '2. ¿Cuál es el sueldo promedio mensual por persona en CLP?', placeholder: 'Ej.: 1200000', suffix: 'CLP mensuales' },
+      { text: '3. ¿Cuántas horas semanales pierde cada persona en tareas manuales?', placeholder: 'Ej.: 6', suffix: 'horas por semana' },
+    ];
+    const formatMoney = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 });
+    const appendAnswer = (value: number, suffix: string) => {
+      const message = document.createElement('p');
+      message.className = 'roi-bubble answer';
+      message.textContent = suffix === 'CLP mensuales' ? formatMoney.format(value) : `${value} ${suffix}`;
+      history.append(message);
+    };
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const value = Number(input.value);
+      if (!Number.isFinite(value) || value <= 0) { error.hidden = false; input.focus(); return; }
+      error.hidden = true;
+      appendAnswer(value, questions[values.length].suffix);
+      values.push(value);
+      input.value = '';
+      if (values.length < questions.length) {
+        question.textContent = questions[values.length].text;
+        input.placeholder = questions[values.length].placeholder;
+        input.focus();
+        return;
+      }
+      const [teamSize, monthlySalary, weeklyManualHours] = values;
+      const monthlyHoursLost = teamSize * weeklyManualHours * 4.33;
+      const monthlyCost = monthlyHoursLost * (monthlySalary / 160);
+      const recoverableHours = monthlyHoursLost * 0.7;
+      const annualSavings = monthlyCost * 0.7 * 12;
+      form.hidden = true;
+      result.hidden = false;
+      const message = encodeURIComponent('Hola Axion, calculé el ROI operativo de mi equipo y quiero revisar cómo automatizar estos procesos.');
+      result.innerHTML = `<p>Ahorro potencial estimado</p><strong>${formatMoney.format(annualSavings)} <small>/ año</small></strong><dl><div><dt>Horas recuperables</dt><dd>${Math.round(recoverableHours)} h / mes</dd></div><div><dt>Costo actual estimado</dt><dd>${formatMoney.format(monthlyCost)} / mes</dd></div></dl><span>Estimación basada en una recuperación potencial del 70%. La evaluación final depende de tu operación.</span><a class="button orange" href="${calculator.dataset.whatsappBase}?text=${message}" target="_blank" rel="noreferrer">Hablar por WhatsApp <span aria-hidden="true">↗</span></a>`;
+    });
+  });
+</script>
