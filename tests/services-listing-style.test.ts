@@ -21,6 +21,12 @@ describe('services listing presentation', () => {
     expect(css).toContain('.footer-cta-copy{');
   });
 
+  it('keeps the prefooter CTA wide enough to avoid a cramped headline', () => {
+    const css = readFileSync('src/styles/global.css', 'utf8');
+    expect(css).toContain('.site-footer .footer-cta{max-width:1180px');
+    expect(css).toContain('.site-footer .footer-cta-copy h2{max-width:15ch');
+  });
+
   it('loads Montserrat for display titles and DM Sans for interface copy', () => {
     const layout = readFileSync('src/layouts/BaseLayout.astro', 'utf8');
     expect(layout).toContain('family=Montserrat');
