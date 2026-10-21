@@ -53,6 +53,11 @@ describe('services listing presentation', () => {
     expect(css).toContain('.industry a:hover span');
   });
 
+  it('adds breathing room before the FAQ consultation CTA', () => {
+    const css = readFileSync('src/styles/global.css', 'utf8');
+    expect(css).toContain('.faq>div:first-child .button{margin-top:2rem}');
+  });
+
   it('defines a shared visual shell for interior pages', () => {
     const css = readFileSync('src/styles/global.css', 'utf8');
     expect(css).toContain('.simple-page,.service-hero{');
