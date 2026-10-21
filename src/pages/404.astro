@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsAppCta from '../components/WhatsAppCta.astro';
+---
+<BaseLayout title="Página no encontrada | Axion" description="La página que buscas no está disponible."><SiteHeader /><main id="contenido" class="not-found"><div class="not-found-mark" aria-hidden="true"><span>4</span><i></i><span>4</span></div><p class="kicker">Ruta no encontrada</p><h1>Esta página se perdió. Tu próxima oportunidad no tiene por qué hacerlo.</h1><p>Puede que el enlace haya cambiado o que la dirección no exista. Volvamos a un lugar útil.</p><div class="not-found-actions"><a class="button orange" href="/">Volver al inicio <span aria-hidden="true">↗</span></a><a class="not-found-link" href="/servicios/">Ver servicios <span aria-hidden="true">→</span></a></div><WhatsAppCta message="Hola Axion, necesito ayuda para encontrar información en el sitio." label="Hablar con Axion" variant="light" /></main><SiteFooter /></BaseLayout>
