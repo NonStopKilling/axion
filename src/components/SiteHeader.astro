@@ -2,4 +2,30 @@
 import logo from '../../logotipo-axion-agentic.png';
 import WhatsAppCta from './WhatsAppCta.astro';
 ---
-<header class="site-header"><div class="nav-shell"><a href="/" class="brand" aria-label="Axion, inicio"><img src={logo.src} alt="Axion" /></a><nav aria-label="Principal"><a href="/servicios/">Servicios</a><a href="/precios/">Precios</a><a href="/casos/">Casos</a><a href="/recursos/calculadora-roi/">Recursos</a><a href="/nosotros/">Nosotros</a></nav><WhatsAppCta message="Hola Axion, quiero conversar sobre mi negocio." /></div></header>
+<header class="site-header" data-site-header>
+  <div class="nav-shell">
+    <a href="/" class="brand" aria-label="Axion, inicio"><img src={logo.src} alt="Axion" /></a>
+    <nav class="desktop-navigation" aria-label="Principal"><a href="/servicios/">Servicios</a><a href="/precios/">Precios</a><a href="/casos/">Casos</a><a href="/recursos/calculadora-roi/">Recursos</a><a href="/nosotros/">Nosotros</a></nav>
+    <div class="header-whatsapp"><WhatsAppCta message="Hola Axion, quiero conversar sobre mi negocio." /></div>
+    <button class="mobile-menu-toggle" type="button" aria-label="Abrir menú" aria-controls="mobile-navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mobile-navigation" id="mobile-navigation" aria-label="Navegación móvil"><p>Explorar Axion</p><a href="/servicios/">Servicios <span aria-hidden="true">↗</span></a><a href="/precios/">Precios <span aria-hidden="true">↗</span></a><a href="/casos/">Casos <span aria-hidden="true">↗</span></a><a href="/recursos/calculadora-roi/">Recursos <span aria-hidden="true">↗</span></a><a href="/nosotros/">Nosotros <span aria-hidden="true">↗</span></a></nav>
+  <div class="mobile-whatsapp"><WhatsAppCta message="Hola Axion, quiero conversar sobre mi negocio." label="Hablar por WhatsApp" /></div>
+</header>
+<style>.mobile-menu-toggle,.mobile-navigation,.mobile-whatsapp{display:none}@media(max-width:800px){.site-header{z-index:30}.nav-shell{position:relative;z-index:70}.desktop-navigation,.header-whatsapp{display:none}.mobile-menu-toggle{width:46px;height:46px;margin-left:auto;padding:0;display:grid;place-content:center;gap:5px;border:0;border-radius:50%;background:var(--axion-violet-deep);cursor:pointer}.mobile-menu-toggle span{display:block;width:20px;height:2px;border-radius:999px;background:#fff;transition:transform .32s cubic-bezier(.22,1,.36,1),opacity .2s ease}.mobile-menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}.mobile-menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;transform:scaleX(.2)}.mobile-menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}.mobile-navigation{position:fixed;z-index:60;inset:0;display:flex;flex-direction:column;justify-content:center;gap:.3rem;padding:7rem 1.8rem 8rem;background:var(--axion-violet-deep);color:#fff;opacity:0;pointer-events:none;transform:translateY(-2%);transition:opacity .32s ease,transform .42s cubic-bezier(.22,1,.36,1)}.mobile-navigation::before{content:"";position:absolute;width:330px;height:330px;right:-155px;top:-75px;border-radius:50%;background:var(--axion-orange);opacity:.96}.mobile-navigation.is-open{opacity:1;pointer-events:auto;transform:translateY(0)}.mobile-navigation p,.mobile-navigation a{position:relative;z-index:1}.mobile-navigation p{margin:0 0 1.2rem;color:#f0d8cb;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.mobile-navigation a{display:flex;align-items:center;justify-content:space-between;padding:.7rem 0;border-bottom:1px solid #ffffff2e;color:#fff;font:800 clamp(2rem,10vw,3.2rem)/1 "Montserrat",sans-serif;letter-spacing:-.06em;text-decoration:none;transition:color .2s ease,transform .25s ease}.mobile-navigation a span{font:700 1.25rem "DM Sans",sans-serif;color:var(--axion-orange)}.mobile-navigation a:hover,.mobile-navigation a:focus-visible{color:#f7af90;transform:translateX(6px);outline:0}.mobile-whatsapp{position:fixed;z-index:65;right:1rem;bottom:max(1rem,env(safe-area-inset-bottom));display:block}.mobile-whatsapp .button{min-height:48px;padding:.75rem 1rem;font-size:.83rem;box-shadow:0 7px 0 var(--axion-orange-warm),0 12px 28px #1e10394a}:global(body.mobile-menu-open){overflow:hidden}}</style>
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const toggle = header?.querySelector<HTMLButtonElement>('.mobile-menu-toggle');
+  const menu = header?.querySelector<HTMLElement>('.mobile-navigation');
+  const menuLinks = menu?.querySelectorAll<HTMLAnchorElement>('a');
+  const setMenu = (open: boolean) => {
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    menu.classList.toggle('is-open', open);
+    document.body.classList.toggle('mobile-menu-open', open);
+  };
+  toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+  menuLinks?.forEach((link) => link.addEventListener('click', () => setMenu(false)));
+  window.addEventListener('keydown', (event) => { if (event.key === 'Escape') setMenu(false); });
+</script>

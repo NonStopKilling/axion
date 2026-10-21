@@ -23,4 +23,14 @@ describe('mobile footer and process composition', () => {
     expect(footer).toContain('.site-footer .footer-media{width:100%;justify-items:center');
     expect(footer).toContain('.footer-grid{grid-template-columns:1fr;text-align:center;justify-items:center}');
   });
+
+  it('provides an accessible full-screen mobile navigation and floating WhatsApp CTA', () => {
+    const header = readFileSync('src/components/SiteHeader.astro', 'utf8');
+
+    expect(header).toContain('class="mobile-menu-toggle"');
+    expect(header).toContain('aria-controls="mobile-navigation"');
+    expect(header).toContain('id="mobile-navigation"');
+    expect(header).toContain('class="mobile-whatsapp"');
+    expect(header).toContain('.mobile-navigation.is-open');
+  });
 });
