@@ -75,4 +75,23 @@ describe('services listing presentation', () => {
     const css = readFileSync('src/styles/global.css', 'utf8');
     expect(css).toContain('.simple-page,.service-hero{');
   });
+
+  it('uses the Chile map as a tall, light-surface desktop composition', () => {
+    const services = readFileSync('src/pages/servicios/index.astro', 'utf8');
+
+    expect(services).toContain('class="services-map"');
+    expect(services).toContain('.services-map{display:grid;grid-template-columns:minmax(0,.8fr) minmax(360px,1.2fr)');
+    expect(services).toContain('background:#fff');
+    expect(services).toContain('.services-map img{width:100%;height:min(760px,65vw)');
+  });
+
+  it('offers a concise corporate navigation group in the footer', () => {
+    const footer = readFileSync('src/components/SiteFooter.astro', 'utf8');
+
+    expect(footer).toContain('<strong>Explorar</strong>');
+    expect(footer).toContain('href="/servicios/"');
+    expect(footer).toContain('href="/casos/"');
+    expect(footer).toContain('href="/recursos/calculadora-roi/"');
+    expect(footer).toContain('href="/nosotros/"');
+  });
 });
