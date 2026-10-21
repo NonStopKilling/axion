@@ -24,4 +24,9 @@ describe('services listing presentation', () => {
     expect(css).toContain('.service-card .service-icon{');
     expect(css).toContain('mix-blend-mode:multiply');
   });
+
+  it('defines a shared visual shell for interior pages', () => {
+    const css = readFileSync('src/styles/global.css', 'utf8');
+    expect(css).toContain('.simple-page,.service-hero{');
+  });
 });
