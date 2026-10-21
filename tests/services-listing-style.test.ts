@@ -34,6 +34,12 @@ describe('services listing presentation', () => {
     expect(css).toContain('mix-blend-mode:normal!important');
   });
 
+  it('keeps homepage service GIFs compact and outside the title flow', () => {
+    const css = readFileSync('src/styles/global.css', 'utf8');
+    expect(css).toContain('position:static!important');
+    expect(css).toContain('width:64px!important');
+  });
+
   it('defines a shared visual shell for interior pages', () => {
     const css = readFileSync('src/styles/global.css', 'utf8');
     expect(css).toContain('.simple-page,.service-hero{');
