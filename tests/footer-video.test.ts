@@ -6,6 +6,7 @@ describe('deferred footer video', () => {
     const footer = readFileSync('src/components/SiteFooter.astro', 'utf8');
 
     expect(footer).toContain('data-deferred-video');
+    expect(footer).toContain('data-src="/video/axion.webm"');
     expect(footer).toContain('data-src="/video/axion.mp4"');
     expect(footer).toContain('IntersectionObserver');
     expect(footer).toContain('setTimeout');

@@ -6,7 +6,7 @@ import logo from '../../logotipo-axion-agentic.png';
   <div class="footer-cta">
     <div class="footer-cta-copy"><p>¿Tu negocio pierde consultas mientras trabaja?</p><h2>Hagamos que cada mensaje tenga respuesta.</h2><WhatsAppCta message="Hola Axion, quiero ver cómo pueden ayudar a mi negocio." label="Conversemos por WhatsApp" /></div>
     <div class="footer-media" data-deferred-video>
-      <div class="footer-video-shell"><video muted playsinline loop preload="none" data-src="/video/axion.mp4" aria-label="Animación de Axion"></video><img src={logo.src} alt="" class="footer-video-fallback" /></div>
+      <div class="footer-video-shell"><video muted playsinline loop preload="none" aria-label="Animación de Axion"><source data-src="/video/axion.webm" type="video/webm" /><source data-src="/video/axion.mp4" type="video/mp4" /></video><img src={logo.src} alt="" class="footer-video-fallback" /></div>
       <span>IA que se pone a trabajar</span>
     </div>
   </div>
@@ -15,15 +15,15 @@ import logo from '../../logotipo-axion-agentic.png';
 <style>.footer-grid{grid-template-columns:1.7fr 1fr 1fr 1fr}.footer-grid a{width:fit-content;transition:color .25s ease,transform .25s ease}.footer-grid a:hover,.footer-grid a:focus-visible{color:#f7af90;transform:translateX(4px);outline:0}@media(max-width:800px){.site-footer .footer-cta{grid-template-columns:1fr!important;width:100%;gap:3rem}.site-footer .footer-cta-copy{width:100%}.site-footer .footer-cta-copy h2{max-width:none}.site-footer .footer-media{width:100%;justify-items:center}.site-footer .footer-video-shell{width:100%}.site-footer .footer-media>span{width:100%;padding-left:0;text-align:center}.footer-grid{grid-template-columns:1fr;text-align:center;justify-items:center}.footer-grid>div{align-items:center}}</style>
 <script>
   const media = document.querySelector<HTMLElement>('[data-deferred-video]');
-  const video = media?.querySelector<HTMLVideoElement>('video[data-src]');
+  const video = media?.querySelector<HTMLVideoElement>('video');
   const fallback = media?.querySelector<HTMLElement>('.footer-video-fallback');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let visibilityTimer: number | undefined;
 
   if (media && video && !reducedMotion && 'IntersectionObserver' in window) {
     const loadVideo = () => {
-      if (video.src) return;
-      video.src = video.dataset.src ?? '';
+      if (video.currentSrc) return;
+      video.querySelectorAll<HTMLSourceElement>('source[data-src]').forEach((source) => { source.src = source.dataset.src ?? ''; });
       video.load();
       video.play().then(() => fallback?.classList.add('is-hidden')).catch(() => undefined);
     };

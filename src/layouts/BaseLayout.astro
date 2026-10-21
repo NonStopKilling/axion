@@ -1,19 +1,23 @@
 ---
 import '../styles/global.css';
-interface Props { title: string; description: string; canonicalPath?: string; structuredData?: Record<string, unknown>; }
-const { title, description, canonicalPath = '/', structuredData } = Astro.props;
+interface Props { title: string; description: string; canonicalPath?: string; robots?: string; structuredData?: Record<string, unknown> | Record<string, unknown>[]; }
+const { title, description, canonicalPath = '/', robots = 'index, follow', structuredData } = Astro.props;
 const canonical = new URL(canonicalPath, 'https://axion.cl').toString();
+const organizationSchema = { '@context': 'https://schema.org', '@type': 'Organization', '@id': 'https://axion.cl/#organization', name: 'Axion', url: 'https://axion.cl/', email: 'chat@axion.cl', telephone: '+56 9 9946 4840', areaServed: { '@type': 'Country', name: 'Chile' }, contactPoint: { '@type': 'ContactPoint', contactType: 'sales', telephone: '+56 9 9946 4840', email: 'chat@axion.cl', availableLanguage: 'es' } };
+const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': 'https://axion.cl/#website', name: 'Axion', url: 'https://axion.cl/', inLanguage: 'es-CL', publisher: { '@id': 'https://axion.cl/#organization' } };
+const pageSchemas = structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : [];
+const schemas = [organizationSchema, websiteSchema, ...pageSchemas];
 ---
 <!doctype html>
 <html lang="es-CL">
   <head>
     <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title><meta name="description" content={description} /><link rel="canonical" href={canonical} />
-    <meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:type" content="website" /><meta property="og:url" content={canonical} /><meta property="og:image" content="https://axion.cl/og.jpg" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content="https://axion.cl/og.jpg" />
+    <title>{title}</title><meta name="description" content={description} /><meta name="robots" content={robots} /><link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:type" content="website" /><meta property="og:locale" content="es_CL" /><meta property="og:site_name" content="Axion" /><meta property="og:url" content={canonical} /><meta property="og:image" content="https://axion.cl/og.jpg" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content="https://axion.cl/og.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet" />
     <meta name="theme-color" content="#3A2355" /><link rel="icon" href="/favicon.ico" sizes="any" /><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" /><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="manifest" href="/site.webmanifest" />
-    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
+    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
   </head>
   <body><a class="skip" href="#contenido">Saltar al contenido</a><slot /></body>
 </html>
