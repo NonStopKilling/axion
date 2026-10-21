@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
-interface Props { title: string; description: string; canonicalPath?: string; }
-const { title, description, canonicalPath = '/' } = Astro.props;
+interface Props { title: string; description: string; canonicalPath?: string; structuredData?: Record<string, unknown>; }
+const { title, description, canonicalPath = '/', structuredData } = Astro.props;
 const canonical = new URL(canonicalPath, 'https://axion.cl').toString();
 ---
 <!doctype html>
@@ -13,6 +13,7 @@ const canonical = new URL(canonicalPath, 'https://axion.cl').toString();
     <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet" />
     <link rel="icon" href="/favicon.svg" />
+    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
   </head>
   <body><a class="skip" href="#contenido">Saltar al contenido</a><slot /></body>
 </html>
