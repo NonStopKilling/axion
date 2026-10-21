@@ -13,6 +13,14 @@ describe('services listing presentation', () => {
     expect(css).toContain('.footer-cta{display:grid');
   });
 
+  it('gives the prefooter its own original-color brand treatment', () => {
+    const footer = readFileSync('src/components/SiteFooter.astro', 'utf8');
+    const css = readFileSync('src/styles/global.css', 'utf8');
+    expect(footer).toContain('footer-mark footer-mark--original');
+    expect(css).toContain('.footer-mark--original img{filter:none}');
+    expect(css).toContain('.footer-cta-copy{');
+  });
+
   it('loads Montserrat for display titles and DM Sans for interface copy', () => {
     const layout = readFileSync('src/layouts/BaseLayout.astro', 'utf8');
     expect(layout).toContain('family=Montserrat');
