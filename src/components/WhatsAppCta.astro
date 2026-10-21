@@ -1,0 +1,6 @@
+---
+import { buildWhatsAppUrl } from '../lib/whatsapp';
+interface Props { message: string; label?: string; variant?: 'orange' | 'light'; }
+const { message, label = 'Hablar por WhatsApp', variant = 'orange' } = Astro.props;
+---
+<a class:list={['button', variant]} href={buildWhatsAppUrl(message)} target="_blank" rel="noreferrer">{label}<span aria-hidden="true">↗</span></a>

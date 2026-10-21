@@ -1,0 +1,4 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import SiteHeader from '../../components/SiteHeader.astro'; import SiteFooter from '../../components/SiteFooter.astro'; import { services } from '../../data/site';
+---
+<BaseLayout title="Servicios de IA y automatización | Axion" description="Conoce los servicios de Axion para automatizar atención, ventas y operación."><SiteHeader /><main id="contenido" class="listing"><p class="kicker">Servicios Axion</p><h1>Herramientas que hacen que tu operación avance.</h1><p>Elige el problema que hoy más tiempo, oportunidades o energía le quita a tu equipo.</p><div class="listing-grid">{services.map((service) => <a href={`/servicios/${service.slug}/`}><h2>{service.name}</h2><p>{service.description}</p><span>Conocer servicio →</span></a>)}</div></main><SiteFooter /></BaseLayout>
