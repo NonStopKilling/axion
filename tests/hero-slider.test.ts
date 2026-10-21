@@ -10,6 +10,7 @@ describe('home hero slider', () => {
     expect(slider).toContain('data-hero-slide');
     expect(slider).toContain('benzoboxc4146');
     expect(slider).toContain('data-hero-dot');
+    expect(slider).toContain('const slideOrder = [1, 0]');
   });
 
   it('provides reduced-motion-friendly slider styling', () => {
