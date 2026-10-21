@@ -22,6 +22,7 @@ describe('mobile footer and process composition', () => {
     expect(footer).toContain('.site-footer .footer-cta{grid-template-columns:1fr!important');
     expect(footer).toContain('.site-footer .footer-media{width:100%;justify-items:center');
     expect(footer).toContain('.footer-grid{grid-template-columns:1fr;text-align:center;justify-items:center}');
+    expect(footer).toContain('.site-footer .footer-cta-copy h2{max-width:none}');
   });
 
   it('provides an accessible full-screen mobile navigation and floating WhatsApp CTA', () => {
