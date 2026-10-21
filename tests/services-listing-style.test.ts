@@ -13,16 +13,17 @@ describe('services listing presentation', () => {
     expect(css).toContain('.footer-cta{display:grid');
   });
 
-  it('loads the chosen display and interface fonts', () => {
+  it('loads Montserrat for display titles and DM Sans for interface copy', () => {
     const layout = readFileSync('src/layouts/BaseLayout.astro', 'utf8');
-    expect(layout).toContain('family=Manrope');
+    expect(layout).toContain('family=Montserrat');
     expect(layout).toContain('family=DM+Sans');
   });
 
-  it('blends service GIFs into their card backgrounds', () => {
+  it('gives service GIFs a visible framed treatment on every card tone', () => {
     const css = readFileSync('src/styles/global.css', 'utf8');
-    expect(css).toContain('.service-card .service-icon{');
-    expect(css).toContain('mix-blend-mode:multiply');
+    expect(css).toContain('.listing-card-top img{');
+    expect(css).toContain('background:#fff');
+    expect(css).toContain('mix-blend-mode:normal!important');
   });
 
   it('defines a shared visual shell for interior pages', () => {
