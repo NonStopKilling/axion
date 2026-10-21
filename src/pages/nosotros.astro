@@ -1,4 +1,27 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'; import SiteHeader from '../components/SiteHeader.astro'; import SiteFooter from '../components/SiteFooter.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 ---
-<BaseLayout title="Nosotros | Axion" description="Axion crea soluciones de IA y automatización para empresas chilenas."><SiteHeader /><main id="contenido" class="simple-page"><p class="kicker">Nosotros</p><h1>Construimos sistemas que le devuelven tiempo a los equipos.</h1><p>Axion combina estrategia, diseño y tecnología para resolver fricciones reales de atención, venta y operación.</p></main><SiteFooter /></BaseLayout>
+<BaseLayout title="Nosotros | Axion" description="Conoce al equipo colaborador detrás de Axion y a Rodrigo Daniel Salgado Escanilla, su cara visible en Chile." canonicalPath="/nosotros/">
+  <SiteHeader />
+  <main id="contenido">
+    <section class="about-hero">
+      <div class="about-portrait"><img src="/img/yo.png" width="600" height="600" alt="Rodrigo Daniel Salgado Escanilla, fundador de Axion" loading="eager" /></div>
+      <div class="about-copy"><p class="kicker">Nosotros</p><h1>Una red de especialistas para resolver problemas que no caben en una sola disciplina.</h1><p>Axion es parte de un gran equipo de profesionales colaboradores, conectados desde distintas ramas del diseño, la ingeniería y la tecnología. La cara visible de la empresa es Rodrigo Daniel Salgado Escanilla.</p><a class="about-linkedin" href="https://www.linkedin.com/in/rodrigo-salgado-91146149/" target="_blank" rel="noreferrer">Ver perfil de Rodrigo en LinkedIn <span aria-hidden="true">↗</span></a></div>
+    </section>
+    <section class="about-focus">
+      <div><p class="kicker">El enfoque</p><h2>Tecnología que avanza cuando se mezclan bien la ingeniería, el producto y la interacción.</h2></div>
+      <div class="about-statement"><p>Mi enfoque combina la ingeniería SaaS, el desarrollo de aplicaciones y la interactividad del 3D para resolver problemas complejos y optimizar la experiencia del usuario. Siempre estoy buscando el siguiente reto tecnológico y dispuesto a colaborar con mentes innovadoras.</p><p>Mis pilares: Desarrollo SaaS, e-Commerce, Apps y Videojuegos, Modelado 3D, Liderazgo y Emprendimiento.</p></div>
+    </section>
+    <section class="about-network">
+      <p class="kicker">Ecosistema fundador</p><h2>Proyectos que expanden la conversación.</h2><p>Rodrigo es fundador de Area3.cl, uxui.cl y vfx.cl, entre otros proyectos que comparten una misma búsqueda: diseñar, construir y mejorar experiencias digitales útiles.</p>
+      <div class="about-businesses">
+        <a href="https://www.area3.cl" target="_blank" rel="noreferrer"><span>01</span><strong>www.area3.cl</strong><i aria-hidden="true">↗</i></a>
+        <a href="https://www.vfx.cl" target="_blank" rel="noreferrer"><span>02</span><strong>www.vfx.cl</strong><i aria-hidden="true">↗</i></a>
+        <a href="https://www.uxui.cl" target="_blank" rel="noreferrer"><span>03</span><strong>www.uxui.cl</strong><i aria-hidden="true">↗</i></a>
+      </div>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>
